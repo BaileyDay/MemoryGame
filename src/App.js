@@ -26,12 +26,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { deck: generateDeck(), pickedCards: [] };
-  }
+  };
 
   render() {
+    function unflipCards(card1Index, card2Index) {
+      let card1 = { ...this.state.deck[card1Index] }
+      let card2 = { ...this.state.deck[card2Index] }
+      card1.isFlipped = false;
+      card2.isFlipped = false;
+      this.state.deck.map(() => {
+
+      })
+    }
 
     let cardsJSX = this.state.deck.map((card, index) => {
-      return <MemoryCard symbol={card.symbol} isFlipped={card.isFlipped} key={index} />
+      return <MemoryCard symbol={card.symbol} isFlipped={card.isFlipped} key={index} pickCard={pickCard.bind(this, index)} />
     });
     function pickCard(cardIndex) {
       if (this.state.deck[cardIndex].isFlipped) {
@@ -41,11 +50,19 @@ class App extends React.Component {
       cardToFlip.isFlipped = true;
       let newPickedCards = this.state.pickedCards.concat(cardIndex);
       let newDeck = this.state.deck.map((card, index) => {
-        if (cardIndex == index) {
+        if (cardIndex === index) {
           return cardToFlip;
         }
         return card;
       })
+      if (newPickedCards.length === 2) {
+        let card1Index = newPickedCards[0]
+        let card2Index = newPickedCards[1]
+        if (newDeck[card1Index].symbol !== newDeck[card2Index].symbol) {
+          //UnFlip cards
+        }
+        newPickedCards = [];
+      }
       this.setState({ deck: newDeck, pickedCards: newPickedCards })
     }
 
