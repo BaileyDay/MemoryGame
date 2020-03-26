@@ -2,9 +2,15 @@ import React from 'react';
 import './App.css';
 import MemoryCard from './memorycard.jsx'
 
-function App() {
-  return (
-    <div className="App">
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { deck: [], pickedCards: [] };
+  }
+
+  render() {
+    return <div className="App">
       <header className="App-header">
         <h1>Memory Game</h1>
         <p className="subtitle">
@@ -24,7 +30,7 @@ function App() {
         <MemoryCard /><MemoryCard /><MemoryCard /><MemoryCard />
       </div>
     </div>
-  );
+  };
 }
 
 export default App;
