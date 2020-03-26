@@ -11,7 +11,7 @@ class MemoryCard extends React.Component {
 
 
     render() {
-        let MemoryCardInnerClass = (this.state.isFlipped) ? "MemoryCardInner flipped" : "MemoryCardInner";
+        let MemoryCardInnerClass = (this.props.isFlipped) ? "MemoryCardInner flipped" : "MemoryCardInner";
 
 
 

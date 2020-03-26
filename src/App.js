@@ -31,7 +31,7 @@ class App extends React.Component {
   render() {
 
     let cardsJSX = this.state.deck.map((card, index) => {
-      return <MemoryCard symbol={card.symbol} isFlipped={card.isFlipped} />
+      return <MemoryCard symbol={card.symbol} isFlipped={card.isFlipped} key={index} />
     });
 
     return <div className="App">
