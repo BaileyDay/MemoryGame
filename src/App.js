@@ -29,16 +29,6 @@ class App extends React.Component {
   };
 
   render() {
-    function unflipCards(card1Index, card2Index) {
-      let card1 = { ...this.state.deck[card1Index] }
-      let card2 = { ...this.state.deck[card2Index] }
-      card1.isFlipped = false;
-      card2.isFlipped = false;
-      this.state.deck.map(() => {
-
-      })
-    }
-
     let cardsJSX = this.state.deck.map((card, index) => {
       return <MemoryCard symbol={card.symbol} isFlipped={card.isFlipped} key={index} pickCard={pickCard.bind(this, index)} />
     });
@@ -59,11 +49,28 @@ class App extends React.Component {
         let card1Index = newPickedCards[0]
         let card2Index = newPickedCards[1]
         if (newDeck[card1Index].symbol !== newDeck[card2Index].symbol) {
-          //UnFlip cards
+          setTimeout(unflipCards.bind(this, card1Index, card2Index), 1000)
         }
         newPickedCards = [];
       }
       this.setState({ deck: newDeck, pickedCards: newPickedCards })
+    }
+
+    function unflipCards(card1Index, card2Index) {
+      let card1 = { ...this.state.deck[card1Index] }
+      let card2 = { ...this.state.deck[card2Index] }
+      card1.isFlipped = false;
+      card2.isFlipped = false;
+      let newDeck = this.state.deck.map((card, index) => {
+        if (card1Index === index) {
+          return card1;
+        }
+        if (card2Index === index) {
+          return card2;
+        }
+        return card;
+      })
+      this.setState({ deck: newDeck })
     }
 
 
