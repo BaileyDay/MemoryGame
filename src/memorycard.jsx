@@ -21,7 +21,7 @@ class MemoryCard extends React.Component {
                     <img src="https://www.digitalcrafts.com/img/digitalcrafts-logo-white-y.png" alt="" />
                 </div>
                 <div className="MemoryCardFront">
-                    ∆
+                    {this.props.symbol}
                 </div>
             </div>
         </div>
