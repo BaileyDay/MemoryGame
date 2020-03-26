@@ -6,7 +6,7 @@ function generateDeck() {
   const symbols = [`∆`, ` ß`, `£`, `§`, `•`, `$`, `+`, `ø`]
   let deck = []
   for (let i = 0; i < 16; i++) {
-    deck.push(symbols[i % 8], isFlipped = false);
+    deck.push({ symbol: symbols[i % 8], isFlipped: false });
   }
   shuffle(deck);
   return deck;
@@ -29,6 +29,11 @@ class App extends React.Component {
   }
 
   render() {
+
+    let cardsJSX = this.state.deck.map((cards, index) => {
+      return <MemoryCard />
+    });
+
     return <div className="App">
       <header className="App-header">
         <h1>Memory Game</h1>
